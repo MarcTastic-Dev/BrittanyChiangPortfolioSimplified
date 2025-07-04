@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Brittany Chiang - Portfolio</title>
+        <style>
+            /* CSS Custom Properties for Theme */
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f9fafb;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f9fafb;
+                --text-primary: #000000;
+                --text-secondary: #1f2937;
+                --text-tertiary: #4b5563;
+                --text-muted: #6b7280;
+                --border-color: #e5e7eb;
+                --border-hover: #d1d5db;
+                --tag-bg: #f3f4f6;
+                --tag-text: #1f2937;
+            }
+
+            [data-theme="dark"] {
+                --bg-primary: #0f172a;
+                --bg-secondary: #1e293b;
+                --bg-card: rgba(15, 23, 42, 0.8);
+                --bg-card-hover: rgba(30, 41, 59, 0.8);
+                --text-primary: #f8fafc;
+                --text-secondary: #e2e8f0;
+                --text-tertiary: #94a3b8;
+                --text-muted: #64748b;
+                --border-color: rgba(100, 116, 139, 0.1);
+                --border-hover: rgba(100, 116, 139, 0.2);
+                --tag-bg: rgba(20, 184, 166, 0.1);
+                --tag-text: #14b8a6;
+            }
+
+            /* Reset and Base Styles */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                line-height: 1.6;
+                color: var(--text-secondary);
+                background-color: var(--bg-primary);
+                min-height: 100vh;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            /* Layout */
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+
+            .main-layout {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            @media (min-width: 1024px) {
+                .main-layout {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 4rem;
+                    padding: 4rem 0;
+                    align-items: start;
+                }
+            }
+
+            /* Header */
+            .header {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                padding: 2rem 0;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .header h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+
+            .header h2 {
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: var(--text-tertiary);
+                margin-bottom: 1rem;
+            }
+
+            .header p {
+                color: var(--text-muted);
+                margin-bottom: 2rem;
+            }
+
+            /* Navigation */
+            .nav {
+                margin-bottom: 2rem;
+            }
+
+            .nav ul {
+                list-style: none;
+            }
+
+            .nav li {
+                margin-bottom: 0.5rem;
+            }
+
+            .nav a {
+                color: var(--text-tertiary);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .nav a:hover {
+                color: var(--text-secondary);
+            }
+
+            /* Social Links */
+            .social-links {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .social-links a {
+                color: var(--text-tertiary);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .social-links a:hover {
+                color: var(--text-primary);
+            }
+
+            /* Content */
+            .content {
+                padding: 2rem 0;
+            }
+
+            .section {
+                margin-bottom: 4rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: 2rem;
+            }
+
+            /* Cards */
+            .card {
+                background-color: var(--bg-card);
+                border-radius: 0.5rem;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                transition: all 0.2s;
+                border: 1px solid var(--border-color);
+            }
+
+            .card:hover {
+                background-color: var(--bg-card-hover);
+                border-color: var(--border-hover);
+            }
+
+            .card h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+
+            .card p {
+                color: var(--text-tertiary);
+                margin-bottom: 1rem;
+            }
+
+            .card a {
+                color: var(--text-secondary);
+                text-decoration: none;
+            }
+
+            .card a:hover {
+                text-decoration: underline;
+            }
+
+            /* Tags */
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .tag {
+                background-color: var(--tag-bg);
+                color: var(--tag-text);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.875rem;
+            }
+
+            /* Links */
+            .external-link {
+                color: var(--text-secondary);
+                text-decoration: none;
+            }
+
+            .external-link:hover {
+                text-decoration: underline;
+            }
+
+            /* Utilities */
+            .text-center {
+                text-align: center;
+            }
+
+            .mb-4 {
+                margin-bottom: 1rem;
+            }
+
+            .mb-8 {
+                margin-bottom: 2rem;
+            }
+
+            /* Dark Mode Toggle */
+            .theme-toggle {
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                z-index: 1000;
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .theme-toggle:hover {
+                transform: scale(1.1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .theme-toggle-icon {
+                font-size: 1.25rem;
+                color: var(--text-primary);
+                transition: transform 0.3s ease;
+            }
+
+            .theme-toggle:hover .theme-toggle-icon {
+                transform: rotate(180deg);
+            }
+
+            @media (max-width: 1024px) {
+                .theme-toggle {
+                    top: 1rem;
+                    right: 1rem;
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .theme-toggle-icon {
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Dark Mode Toggle Button -->
+        <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+        >
+            <span class="theme-toggle-icon">🌙</span>
+        </button>
+
+        <div class="container">
+            <div class="main-layout">
+                <!-- Header/Sidebar -->
+                <header class="header">
+                    <h1>Brittany Chiang</h1>
+                    <h2>Senior Frontend Engineer</h2>
+                    <p>
+                        I build pixel-perfect, engaging, and accessible digital
+                        experiences.
+                    </p>
+
+                    <nav class="nav">
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="social-links">
+                        <a
+                            href="https://github.com/bchiang7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >GitHub</a
+                        >
+                        <a
+                            href="https://www.linkedin.com/in/bchiang7/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >LinkedIn</a
+                        >
+                        <a
+                            href="https://codepen.io/bchiang7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >CodePen</a
+                        >
+                        <a
+                            href="https://instagram.com/bchiang7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Instagram</a
+                        >
+                        <a
+                            href="https://www.goodreads.com/user/show/143480747-brittany-chiang"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Goodreads</a
+                        >
+                    </div>
+                </header>
+
+                <!-- Main Content -->
+                <main class="content">
+                    <!-- About Section -->
+                    <section id="about" class="section">
+                        <h2>About</h2>
+                        <div class="card">
+                            <p>
+                                Back in 2012, I decided to try my hand at
+                                creating custom Tumblr themes and tumbled head
+                                first into the rabbit hole of coding and web
+                                development. Fast-forward to today, and I've had
+                                the privilege of building software for an
+                                advertising agency, a start-up, a huge
+                                corporation, and a digital product studio.
+                            </p>
+
+                            <p>
+                                My main focus these days is building accessible
+                                user interfaces for our customers at Klaviyo. I
+                                most enjoy building software in the sweet spot
+                                where design and engineering meet — things that
+                                look good but are also built well under the
+                                hood.
+                            </p>
+
+                            <p>
+                                When I'm not at the computer, I'm usually rock
+                                climbing, hanging out with my wife and two cats,
+                                or crossing off another item on my reading list.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section id="experience" class="section">
+                        <h2>Experience</h2>
+
+                        <div class="card">
+                            <h3>
+                                Senior Frontend Engineer -
+                                <a href="#" class="external-link">Klaviyo</a>
+                            </h3>
+                            <p>2022 — Present</p>
+                            <p>
+                                Build and maintain critical components used to
+                                construct Klaviyo's frontend, across the whole
+                                product. Work closely with cross-functional
+                                teams, including developers, designers, and
+                                product managers, to implement and advocate for
+                                best practices in web accessibility.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Storybook</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                Lead Engineer -
+                                <a href="#" class="external-link"
+                                    >Upstatement</a
+                                >
+                            </h3>
+                            <p>2018 — 2022</p>
+                            <p>
+                                Delivered high-quality, robust production code
+                                for a diverse array of projects for clients
+                                including Harvard Business School, Everytown for
+                                Gun Safety, Pratt Institute, Koala Health,
+                                Vanderbilt University, The 19th News, and more.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Vue</span>
+                                <span class="tag">Node.js</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                Software Engineer -
+                                <a href="#" class="external-link">Apple</a>
+                            </h3>
+                            <p>2017 — 2018</p>
+                            <p>
+                                Developed and styled interactive web apps for
+                                Apple Music using MusicKit.js. Built and shipped
+                                the Apple Music embeddable web player widget,
+                                which lets users log in and listen to full songs
+                                in the browser.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">MusicKit.js</span>
+                                <span class="tag">Ember</span>
+                                <span class="tag">Ruby</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                Studio Developer -
+                                <a href="#" class="external-link"
+                                    >Scout Studio</a
+                                >
+                            </h3>
+                            <p>2015 — 2017</p>
+                            <p>
+                                Worked with a team of three designers to help
+                                create a marketing website and e-commerce
+                                platform for blistabloc, an ambitious startup
+                                originating from Northeastern University.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Shopify</span>
+                                <span class="tag">Liquid</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                Software Engineer Co-op -
+                                <a href="#" class="external-link">Starry</a>
+                            </h3>
+                            <p>2016 — 2017</p>
+                            <p>
+                                Worked with designers and engineers to research,
+                                design, and develop a cross-platform mobile app
+                                for Starry's customer base. Contributed to
+                                Starry's new customer acquisition iOS app with a
+                                focus on user experience and visual design.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">React Native</span>
+                                <span class="tag">iOS</span>
+                                <span class="tag">Android</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                UI Engineer Co-op -
+                                <a href="#" class="external-link"
+                                    >Northeastern University</a
+                                >
+                            </h3>
+                            <p>2014 — 2016</p>
+                            <p>
+                                Developed and maintained code for in-house and
+                                client websites primarily using HTML, CSS, Sass,
+                                JavaScript, and jQuery.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">jQuery</span>
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Sass</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="/resume.pdf" class="external-link"
+                                >View Full Résumé</a
+                            >
+                        </div>
+                    </section>
+
+                    <!-- Projects Section -->
+                    <section id="projects" class="section">
+                        <h2>Projects</h2>
+
+                        <div class="card">
+                            <h3>
+                                <a href="#" class="external-link"
+                                    >Spotify Profile</a
+                                >
+                            </h3>
+                            <p>
+                                A web app for visualizing personalized Spotify
+                                data. View your top artists, top tracks,
+                                recently played tracks, and detailed audio
+                                information about each track. Create and save
+                                new playlists of recommended tracks based on
+                                your existing playlists and more.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Express</span>
+                                <span class="tag">Spotify API</span>
+                                <span class="tag">Styled Components</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                <a href="#" class="external-link"
+                                    >Halcyon Theme</a
+                                >
+                            </h3>
+                            <p>
+                                A minimal, dark blue theme for VS Code, Sublime
+                                Text, Atom, iTerm, and more. Available on Visual
+                                Studio Code Marketplace, Package Control, Atom
+                                Package Manager, and npm.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">VS Code</span>
+                                <span class="tag">Sublime Text</span>
+                                <span class="tag">Atom</span>
+                                <span class="tag">iTerm2</span>
+                                <span class="tag">Hyper</span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>
+                                <a href="#" class="external-link"
+                                    >Brittany Chiang (v4)</a
+                                >
+                            </h3>
+                            <p>
+                                Fourth iteration of my personal website built
+                                with Gatsby and hosted on Netlify.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Gatsby</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Styled Components</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="/archive" class="external-link"
+                                >View Project Archive</a
+                            >
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <script>
+            // Dark mode toggle functionality
+            const themeToggle = document.getElementById("themeToggle");
+            const themeIcon = themeToggle.querySelector(".theme-toggle-icon");
+            const body = document.body;
+
+            // Check for saved theme preference or default to light mode
+            const currentTheme = localStorage.getItem("theme") || "light";
+
+            // Apply the saved theme
+            if (currentTheme === "dark") {
+                body.setAttribute("data-theme", "dark");
+                themeIcon.textContent = "☀️";
+            } else {
+                body.removeAttribute("data-theme");
+                themeIcon.textContent = "🌙";
+            }
+
+            // Toggle theme function
+            function toggleTheme() {
+                const isDark = body.getAttribute("data-theme") === "dark";
+
+                if (isDark) {
+                    body.removeAttribute("data-theme");
+                    themeIcon.textContent = "🌙";
+                    localStorage.setItem("theme", "light");
+                } else {
+                    body.setAttribute("data-theme", "dark");
+                    themeIcon.textContent = "☀️";
+                    localStorage.setItem("theme", "dark");
+                }
+            }
+
+            // Add click event listener
+            themeToggle.addEventListener("click", toggleTheme);
+
+            // Add keyboard support
+            themeToggle.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        </script>
+    </body>
+</html>
